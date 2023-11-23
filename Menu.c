@@ -1,23 +1,31 @@
 #include <stdio.h>
+#include "Funcoes.c"
+#include <stdlib.h>
+#include <string.h>
 
-void inserir_nova_tarefa(struct Tarefa *t);
+/* void inserir_nova_tarefa();
 void mostrar_tarefas_cadastradas();
 void buscar_por_tarefa();
 void editar_informacoes_de_uma_tarefa();
 void remover_tarefa();
 void marcar_conclusao_de_uma_tarefa_especifica();
-void salvar_lista_de_tarefas_em_um_arquivo();
+void salvar_lista_de_tarefas_em_um_arquivo(); */
 
-struct Tarefa {
-    char Nome[50];
-    int Dificuldade[20];
-    int Status [20];
-} 
+//Criei a lista de tarefas primeiro anes da funcao inserirnovatarefa para poder apenas adicionar os dados nela com ponteiros
+
+
+// Struct com as caracteristicas da tarefa
 
 
 int main() {
     int opcao;
-    char continuar;
+    //vetor que mede o tamanho da struct de lista pra gente poder mexer nas posições e nas caracteristicas delas
+    // l ta se referindo as tarefas (por exemplo: l.posicao = 0 vai ser a tarefa 1)
+    Lista l;
+    l.tarefas = (Tarefa*)calloc(10, sizeof(Tarefa)); 
+
+    //Da posição 0 a lista para a primeira ser a 0
+    l.posicaoAtual = 0;
 
     do {
         printf("Escolha uma opcao:\n");
@@ -33,12 +41,15 @@ int main() {
 
         if (opcao < 1 || opcao > 7) {
             printf("Opcao invalida. Digite uma opcao valida.\n");
-        }
-    } while (opcao < 1 || opcao > 7);
+        } 
 
-    switch (opcao) {
+        else {
+
+         switch (opcao) {
         case 1:
-            inserir_nova_tarefa();
+            inserir_nova_tarefa(l);
+            // Aumenta a posição da tarefa para se clicarmos aq denovo vai iniciar a tarefa na l[1] que é a tarefa 2
+            l.posicaoAtual++;
             break;
         case 2:
             mostrar_tarefas_cadastradas();
@@ -58,7 +69,10 @@ int main() {
         case 7:
             salvar_lista_de_tarefas_em_um_arquivo();
             break;
-    }
+        }
+    }} while (opcao != 8);
+
+   
 
     return 0;
 }

@@ -1,36 +1,54 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
-void inserir_nova_tarefa(struct Tarefa *t) {
+typedef struct tarefa {
+    char Nome[50];
+    char Dificuldade[20];
+    char Status[20];
+} Tarefa;
+
+
+// Struct para a lista de trefas
+typedef struct listadeTrarefas {
+    Tarefa *tarefas;
+    int posicaoAtual; 
+} Lista;
+
+
+void inserir_nova_tarefa(Lista l) {
     char nome[50];
     int dificuldade;
     int status;
+   
 
     printf("Digite o nome da tarefa em até 50 caracteres:");
-    scanf("%49s", nome);
-    strcpy(t->Nome , nome);
+    scanf(" %49[^\n]", nome);
+    //Pega a tarefa l e dentro dela a posicao que ela está e altera só o nome dessa tarefa, dentro da lista de tarefas
+    strcpy(l.tarefas[l.posicaoAtual].Nome , nome);
 
-    printf ("Digite a dificuldade da tarefa, sendo 1 fácil, 2 médio e 3 para uma tarefa difícil:");
+    printf ("Digite a dificuldade da tarefa, sendo 1 facil, 2 medio e 3 para uma tarefa dificil:");
     scanf("%d", &dificuldade);
     if (dificuldade < 1 || dificuldade > 3)
     {
-        printf("Dificuldade inválida!\n");
+        printf("Dificuldade invalida!\n");
         return;
     }
-    strcpy(t->Dificuldade, dificuldade == 1 ? dificuldade == 2 ? "Médio" : "Difícil");
+    strcpy(l.tarefas[l.posicaoAtual].Dificuldade, dificuldade == 1 ? "facil" : dificuldade == 2 ? "Medio" : "Dificil");
 
-    printf ("Digite os status da tarefa, use 1 para tarefa não concluída e 2 para tarefa concluída:");
+    printf ("Digite os status da tarefa, use 1 para tarefa não concluída e 2 para tarefa concluida:");
     scanf("%d", &status);
     if (status < 1 || status > 2)
     {
-        printf("Status inválida!\n");
+        printf("Status invalida!\n");
         return;
     }
-    strcpy(t->Status, status == 1 ? "Não concluída" : "Concluída");
+    strcpy(l.tarefas[l.posicaoAtual].Status, status == 1 ? "Não concluida" : "Concluida");
 
     printf("tarefa inserida com sucesso!\n");
-    printf("Nome %s\n:", t->Nome);
-    printf("Dificuldade %s\n:", t->Dificuldade);
-    printf("Status %s\n:", t->Status);
+    printf("Nome :%s\n", l.tarefas[l.posicaoAtual].Nome);
+    printf("Dificuldade :%s\n", l.tarefas[l.posicaoAtual].Dificuldade);
+    printf("Status :%s\n", l.tarefas[l.posicaoAtual].Status);
     
 
 }
