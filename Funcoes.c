@@ -59,8 +59,18 @@ void inserir_nova_tarefa(Lista l) {
     
 }
 
-void mostrar_tarefas_cadastradas() {
-    printf("Oi 2\n");
+
+void mostrar_tarefas_cadastradas(Lista l) {
+    int i;
+
+    printf("\nTarefas cadastradas:\n");
+
+    for (i = 0; i < l.posicaoAtual; i++) {
+        printf("\nTarefa %d:\n", i + 1);
+        printf("\nNome: %s\n", l.tarefas[i].Nome);
+        printf("Dificuldade: %s\n", l.tarefas[i].Dificuldade);
+        printf("Status: %s\n", l.tarefas[i].Status);
+    }
 }
 
 void buscar_por_tarefa() {

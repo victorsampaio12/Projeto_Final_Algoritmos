@@ -53,7 +53,7 @@ int main() {
             l.posicaoAtual++;
             break;
         case 2:
-            mostrar_tarefas_cadastradas();
+            mostrar_tarefas_cadastradas(l);
             break;
         case 3:
             buscar_por_tarefa();
