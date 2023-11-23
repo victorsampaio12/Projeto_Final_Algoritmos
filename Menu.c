@@ -36,7 +36,6 @@ int main() {
         printf("5. Remover tarefa\n");
         printf("6. Marcar conclusao de uma tarefa especifica\n");
         printf("7. Salvar lista de tarefas em um arquivo\n");
-        printf("8. Sair\n");
 
         scanf("%d", &opcao);
 
@@ -59,7 +58,7 @@ int main() {
             buscar_por_tarefa();
             break;
         case 4:
-            editar_informacoes_de_uma_tarefa();
+            editar_informacoes_de_uma_tarefa(l);
             break;
         case 5:
             remover_tarefa();
@@ -69,9 +68,6 @@ int main() {
             break;
         case 7:
             salvar_lista_de_tarefas_em_um_arquivo();
-            break;
-
-        case 8:
             break;
         }
     }} while (opcao != 8);

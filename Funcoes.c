@@ -59,7 +59,6 @@ void inserir_nova_tarefa(Lista l) {
     
 }
 
-
 void mostrar_tarefas_cadastradas(Lista l) {
     int i;
 
@@ -77,9 +76,69 @@ void buscar_por_tarefa() {
     printf("Oi 3\n");
 }
 
-void editar_informacoes_de_uma_tarefa() {
-    printf("Oi 4\n");
-}
+void editar_informacoes_de_uma_tarefa(Lista l) {
+    int numero, opcao;
+    char novo_nome[50];
+    int nova_dificuldade, novo_status;
+    int i;
+
+    printf("\nDigite o numero da tarefa que voce quer editar:\n");
+
+    for (i = 0; i < l.posicaoAtual; i++) {
+        printf("\nTarefa %d:\n", i + 1);
+        printf("Nome: %s\n", l.tarefas[i].Nome);
+        printf("Dificuldade: %s\n", l.tarefas[i].Dificuldade);
+        printf("Status: %s\n", l.tarefas[i].Status);
+    }
+
+    scanf("%d", &numero);
+
+    // Verifica se o numero da tarefa e valido
+    if (numero < 1 || numero > l.posicaoAtual) {
+        printf("\nNumero invalido. Digite um numero valido.\n");
+        return;
+    }
+
+    // Mostra as opcoes de edicao
+    printf("\nO que voce quer editar na tarefa %d?\n", numero);
+    printf("\n1. Nome\n");
+    printf("2. Dificuldade\n");
+    printf("3. Voltar\n");
+
+    scanf("%d", &opcao);
+
+    if (opcao < 1 || opcao > 3) {
+        printf("\nOpcao invalida. Digite uma opcao valida.\n");
+        return;
+    }
+
+    switch (opcao) {
+        case 1:
+            // Altera o nome da tarefa
+            printf("\nDigite o novo nome da tarefa em ate 50 caracteres:\n");
+            scanf(" %49[^\n]", novo_nome);
+            strcpy(l.tarefas[numero - 1].Nome, novo_nome);
+            printf("\nNome alterado com sucesso!\n");
+            break;
+        case 2:
+            // Altera a dificuldade da tarefa
+            printf("\nDigite a nova dificuldade da tarefa, sendo:\n");
+            printf("1 - Facil\n");
+            printf("2 - Media\n");
+            printf("3 - Dificil\n");
+            scanf("%d", &nova_dificuldade);
+            if (nova_dificuldade < 1 || nova_dificuldade > 3) {
+                printf("\nDificuldade invalida. Digite uma dificuldade valida.\n");
+                return;
+            }
+            strcpy(l.tarefas[numero - 1].Dificuldade, nova_dificuldade == 1 ? "facil" : nova_dificuldade == 2 ? "Medio" : "Dificil");
+            printf("\nDificuldade alterada com sucesso!\n");
+            break;
+        case 3:
+            // Volta para o menu principal
+            return;
+    }
+}    
 
 void remover_tarefa() {
     printf("Oi 5\n");
