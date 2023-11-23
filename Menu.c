@@ -1,12 +1,19 @@
 #include <stdio.h>
 
-void inserir_nova_tarefa();
+void inserir_nova_tarefa(struct Tarefa *t);
 void mostrar_tarefas_cadastradas();
 void buscar_por_tarefa();
 void editar_informacoes_de_uma_tarefa();
 void remover_tarefa();
 void marcar_conclusao_de_uma_tarefa_especifica();
 void salvar_lista_de_tarefas_em_um_arquivo();
+
+struct Tarefa {
+    char Nome[50];
+    int Dificuldade[20];
+    int Status [20];
+} 
+
 
 int main() {
     int opcao;
