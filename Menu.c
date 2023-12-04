@@ -46,6 +46,25 @@ int main() {
             break;
         case 6:
             marcar_conclusao_de_uma_tarefa_especifica();
+            void marcar_conclusao_de_uma_tarefa_especifica(Lista* l) {
+    mostrar_tarefas_cadastradas(l);
+
+    if (l->posicaoAtual == 0) {
+        printf("Nenhuma tarefa cadastrada.\n");
+        return;
+    }
+
+    int indice;
+    printf("Digite o número da tarefa a ser marcada como concluída: ");
+    scanf("%d", &indice);
+
+    if (indice >= 1 && indice <= l->posicaoAtual) {
+        l->tarefas[indice - 1].concluida = 1; // Marca como concluída
+        printf("Tarefa marcada como concluída.\n");
+    } else {
+        printf("Índice inválido.\n");
+    }
+}
             break;
         case 7:
             salvar_lista_de_tarefas_em_um_arquivo();
